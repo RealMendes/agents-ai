@@ -1,0 +1,7 @@
+# Sistema operacional / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# Dependências (se você adicionar tooling auxiliar)
+node_modules/

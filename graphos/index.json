@@ -1,0 +1,12 @@
+{
+  "$schema": "graphos/index",
+  "version": 1,
+  "nodes": {
+    "spec": [],
+    "decision": [],
+    "task": [],
+    "module": [],
+    "learning": [],
+    "test": []
+  }
+}
