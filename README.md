@@ -1,64 +1,31 @@
-# Time de desenvolvimento SDD + Graphos
+# Time SDD + Graphos (Claude Code)
 
-Este workspace contém um **time de subagents para desenvolvimento de código**
-que trabalha em modo spec-driven (SDD) usando o **Graphos** — um grafo de
-memória em arquivos para memória inteligente e otimização de tokens.
+Time de desenvolvimento **spec-driven** para o **Claude Code**, com memória
+inteligente em grafo (**Graphos**) para otimizar tokens.
 
-## O que há aqui
+## Como usar
 
-- `graphos/` — o grafo de memória (esquema, índice, templates, papéis, pipeline).
-  Comece por `graphos/README.md` e `graphos/PROTOCOL.md`.
-- `presets/` — cópia versionável dos 6 presets (um diretório por papel, com
-  `agent.cordis.yml` + `preset.yml`).
-- `scripts/` — instalador dos presets em outro harness.
-- **6 presets persistentes** (em `~/.dsh/.agent-presets/`), um por papel:
+1. Rode `claude` na raiz do projeto.
+2. Descreva o objetivo. O agente principal (`CLAUDE.md`, papel de Integrador)
+   orquestra as fases delegando aos subagents de `.claude/agents/`.
+3. A memória fica em `graphos/`: cada papel lê só o nó relevante e grava de volta
+   resumos compactos.
 
-| Preset | Papel |
-|--------|-------|
-| `sdd-specifier`   | Especificador — escreve a spec antes de qualquer código |
-| `sdd-architect`   | Arquiteto — decisões, módulos e tarefas |
-| `sdd-implementer` | Implementador — escreve o código seguindo a spec |
-| `sdd-reviewer`    | Revisor — revisa contra a spec e as decisões |
-| `sdd-qa`          | QA — verifica critérios de aceite com evidência |
-| `sdd-integrator`  | Integrador — orquestra o pipeline e cuida do grafo |
+## Papéis (subagents)
 
-## Como começar
+| Subagent | Papel |
+|----------|-------|
+| `specifier`   | Especificador — spec antes de qualquer código |
+| `architect`   | Arquiteto — decisões, módulos e tarefas |
+| `implementer` | Implementador — código seguindo a spec |
+| `reviewer`    | Revisor — revisa contra spec/decisões |
+| `qa`          | QA — verifica critérios de aceite |
+| agente principal (`CLAUDE.md`) | Integrador — orquestra e cuida do grafo |
 
-1. **Orquestrar um trabalho**: inicie uma sessão com o preset `SDD Integrador`
-   e descreva o objetivo. Ele delega às fases usando os briefings em
-   `graphos/roles/`.
-2. **Trabalhar em um papel específico**: inicie uma sessão com o preset do
-   papel correspondente.
-3. A memória (specs, decisões, tarefas, aprendizados) fica em `graphos/`, então
-   qualquer papel retoma o contexto lendo só o que precisa.
+## Memória (Graphos)
 
-## Exportar e instalar em outro harness
-
-O projeto é portável em duas camadas:
-
-- **Metodologia + memória** (`graphos/`, `roles/`, `templates/`, `SDD-PIPELINE.md`):
-  puro Markdown/JSON — funciona em qualquer harness/agente. Basta copiar o
-  diretório `graphos/` para o workspace do destino.
-- **Presets** (`presets/`): são composições Cordis que dependem dos pacotes do
-  preset `standard` de um deployment DSH. Para instalar em outro harness DSH:
-
-```powershell
-# Windows (PowerShell)
-./scripts/install-presets.ps1
-```
-
-```sh
-# macOS / Linux
-sh scripts/install-presets.sh
-```
-
-Isso copia cada preset para `$DSH_HOME/.agent-presets/`. Reinicie o harness e os
-6 presets aparecem no seletor. Se o destino for uma versão mais antiga e algum
-pacote faltar, a validação de montagem aponta qual.
-
-## Claude Code
-
-Adaptação para Claude Code: o **Integrador** vira o agente principal via
-`CLAUDE.md`, e os 5 papéis restantes viram subagents em `.claude/agents/`. O
-`graphos/` funciona igual. Rode `claude` na raiz do projeto e descreva o
-objetivo — o agente orquestra as fases usando os subagents.
+- `graphos/PROTOCOL.md` — esquema do grafo + regras de otimização de tokens.
+- `graphos/index.json` — índice único de adjacência/status.
+- `graphos/templates/` — templates de nó.
+- `graphos/nodes/` — os nós (specs, decisões, tarefas, módulos, aprendizados, testes).
+- `graphos/SDD-PIPELINE.md` — o fluxo de fases.

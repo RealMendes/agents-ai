@@ -5,7 +5,7 @@ Graphos é a camada de **memória inteligente** do time de desenvolvimento SDD
 tarefas, módulos, aprendizados e resultados de teste — como um **grafo em
 arquivos**, dentro do diretório de trabalho.
 
-O objetivo central é **otimização de tokens**: cada subagent lê apenas o que
+O objetivo central é **otimização de tokens**: cada agente lê apenas o que
 precisa (um nó e seus vizinhos diretos), nunca o projeto inteiro, e grava de
 volta resumos compactos em vez de históricos completos.
 
@@ -24,7 +24,6 @@ graphos/
     learning/         nós de aprendizado/insight
     test/             nós de plano/resultado de teste
   templates/          templates prontos para cada tipo de nó
-  roles/              briefings de cada papel (o Integrador passa isso aos subagents)
   SDD-PIPELINE.md     o fluxo completo e como orquestrar
 ```
 

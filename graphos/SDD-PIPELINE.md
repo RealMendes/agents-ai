@@ -1,8 +1,8 @@
 # Pipeline SDD (spec-driven development)
 
-Fluxo do time. Cada fase produz nós no Graphos e alimenta a próxima. O
-Integrador orquestra; as demais fases podem rodar como subagents (use os
-briefings em `graphos/roles/`).
+Fluxo do time. Cada fase produz nós no Graphos e alimenta a próxima. O agente
+principal (Integrador, via `CLAUDE.md`) orquestra; as demais fases rodam como
+subagents definidos em `.claude/agents/`.
 
 ```
 Pedido ─▶ 1. Especificar ─▶ 2. Projetar ─▶ 3. Implementar ─▶ 4. Revisar ─▶ 5. Testar ─▶ 6. Integrar ─▶ (itera ou entrega)
@@ -38,22 +38,20 @@ Verifica os critérios de aceite com evidência.
 - Entregáveis: `nodes/test/*` (plano + resultado por critério) + tarefas de
   correção se falhar.
 
-### 6. Integrar — `integrator`
+### 6. Integrar — agente principal (`CLAUDE.md`)
 Consolida, mantém o `index.json` consistente e decide concluir ou iterar.
 
 ## Como o Integrador orquestra
 
-Delegue cada fase com o briefing correspondente. Exemplo (chamadas `subagent`,
-uma por vez, com `run_in_background: false` quando a próxima fase depende do
-resultado):
+Delegue cada fase ao subagent correspondente (`.claude/agents/`), passando um
+prompt autossuficiente com o `id` do(s) nó(s) relevante(s). Ordem típica:
 
-1. `subagent(prompt=ler graphos/roles/specifier.md + o pedido do usuário)`
-2. aprovar a spec, depois `subagent(prompt=ler graphos/roles/architect.md + id da spec)`
-3. para cada tarefa `todo`, `subagent(prompt=ler graphos/roles/implementer.md + id da task)`
-4. `subagent(prompt=ler graphos/roles/reviewer.md + ids tocados)`
-5. `subagent(prompt=ler graphos/roles/qa.md + id da spec)`
+1. `specifier` (o pedido do usuário) → aprovar a spec.
+2. `architect` (id da spec) → revisar decisões e tarefas.
+3. para cada task `todo`: `implementer` (id da task).
+4. `reviewer` (ids tocados).
+5. `qa` (id da spec).
 6. consolidar no `index.json` e relatar ao humano.
 
-Para muitas tarefas independentes, use a ferramenta `workflow` com um estágio
-por fase (spec → design → implement → review → test), passando o conteúdo do
-briefing como prompt de cada `agent()`.
+Para tasks independentes, rode vários subagents em paralelo e colete os
+resultados antes de seguir para a próxima fase.

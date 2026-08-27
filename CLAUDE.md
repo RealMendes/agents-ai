@@ -21,6 +21,6 @@ de tokens.
 
 ## Delegação
 Passe a cada subagent um prompt autossuficiente: o `id` do(s) nó(s) relevante(s)
-+ contexto do pedido. Os briefings completos vivem em `graphos/roles/` e já estão
-embutidos nos subagents. Para tasks independentes, rode os subagents em paralelo
-e colete os resultados antes de seguir para a próxima fase.
++ contexto do pedido. As instruções de cada papel já estão embutidas nos
+subagents (`.claude/agents/`). Para tasks independentes, rode os subagents em
+paralelo e colete os resultados antes de seguir para a próxima fase.
