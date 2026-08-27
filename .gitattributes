@@ -1,0 +1,2 @@
+# Normaliza fins de linha para LF em todo o repositório (seguro para scripts .sh e consistente entre SOs).
+* text=auto eol=lf
