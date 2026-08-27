@@ -55,3 +55,10 @@ sh scripts/install-presets.sh
 Isso copia cada preset para `$DSH_HOME/.agent-presets/`. Reinicie o harness e os
 6 presets aparecem no seletor. Se o destino for uma versão mais antiga e algum
 pacote faltar, a validação de montagem aponta qual.
+
+## Claude Code
+
+Adaptação para Claude Code: o **Integrador** vira o agente principal via
+`CLAUDE.md`, e os 5 papéis restantes viram subagents em `.claude/agents/`. O
+`graphos/` funciona igual. Rode `claude` na raiz do projeto e descreva o
+objetivo — o agente orquestra as fases usando os subagents.
