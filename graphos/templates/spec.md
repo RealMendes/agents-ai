@@ -1,9 +1,9 @@
 ---
 id: spec/<slug>
 type: spec
-status: draft            # draft | review | approved | implemented | done
+status: draft
 tags: []
-relates: []              # ex.: [decision/..., task/...]
+relates: []
 summary: ""
 ---
 

@@ -1,9 +1,9 @@
 ---
 id: test/<slug>
 type: test
-status: planned          # planned | passing | failing
+status: planned
 tags: []
-relates: []              # ex.: [spec/..., task/...]
+relates: []
 summary: ""
 ---
 

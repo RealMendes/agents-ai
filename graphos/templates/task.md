@@ -1,9 +1,9 @@
 ---
 id: task/<slug>
 type: task
-status: todo             # todo | in-progress | done | blocked
+status: todo
 tags: []
-relates: []              # ex.: [spec/..., module/...]
+relates: []
 summary: ""
 ---
 

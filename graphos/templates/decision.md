@@ -1,9 +1,9 @@
 ---
 id: decision/<slug>
 type: decision
-status: proposed         # proposed | accepted | superseded
+status: proposed
 tags: []
-relates: []              # ex.: [spec/..., module/...]
+relates: []
 summary: ""
 ---
 

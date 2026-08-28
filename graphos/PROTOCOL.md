@@ -12,17 +12,16 @@ estas regras ao ler e escrever.
 
 ## 2. Esquema de um nó
 
-Front-matter YAML obrigatório em todo nó:
+Front-matter YAML obrigatório em todo nó. `tags` e `relates` são sempre arrays
+**inline** (`[a, b]`) — é o formato que o engine lê:
 
 ```yaml
 ---
-id: spec/auth-login          # único: <tipo>/<slug>
-type: spec                    # spec|decision|task|module|learning|test
-status: draft                 # ver status por tipo abaixo
-tags: [auth, security]        # para busca
-relates:                      # ids de outros nós (arestas)
-  - decision/auth-jwt
-  - task/add-login-endpoint
+id: spec/auth-login
+type: spec
+status: draft
+tags: [auth, security]
+relates: [decision/auth-jwt, task/add-login-endpoint]
 summary: "Login por JWT com refresh token."
 ---
 ```
@@ -73,3 +72,14 @@ O corpo é Markdown livre. Mantenha-o **compacto** (meta: ≤ ~300 palavras).
 - `id` = `<tipo>/<slug>`, ex.: `spec/auth-login`, `task/add-login-endpoint`.
 - `slug` em kebab-case, curto e descritivo.
 - `file` = `nodes/<tipo>/<slug>.md`.
+
+## 7. Engine (linha de comando)
+
+`node engine/graphos.mjs <comando>` (ou `graphos`, se instalado no PATH):
+
+- `init` — cria a estrutura `graphos/` (nodes, templates, index.json).
+- `add <tipo> <slug>` — cria um nó e registra no índice.
+- `query <id>` — imprime o subgrafo de 1 salto (contexto mínimo p/ prompt).
+- `validate` — valida arestas, ids, status e drift.
+- `order` — ordena as tasks por dependência (DAG / topological sort).
+- `index` — reconstrói o `index.json` a partir de `nodes/`.

@@ -1,0 +1,18 @@
+{
+  "name": "graphos-sdd",
+  "description": "Spec-driven development team with a Graphos graph-memory engine: subagents, skills, and a slash command",
+  "version": "1.0.0",
+  "author": {
+    "name": "RealMendes"
+  },
+  "homepage": "https://github.com/RealMendes/agents-ai",
+  "repository": "https://github.com/RealMendes/agents-ai",
+  "license": "MIT",
+  "keywords": [
+    "spec-driven-development",
+    "graph-memory",
+    "subagents",
+    "skills",
+    "workflows"
+  ]
+}

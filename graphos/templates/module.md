@@ -1,9 +1,9 @@
 ---
 id: module/<slug>
 type: module
-status: stub             # stub | stable | deprecated
+status: stub
 tags: []
-relates: []              # ex.: [module/..., decision/...]
+relates: []
 summary: ""
 ---
 

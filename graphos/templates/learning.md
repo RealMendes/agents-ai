@@ -1,9 +1,9 @@
 ---
 id: learning/<slug>
 type: learning
-status: active           # active | resolved
+status: active
 tags: []
-relates: []              # ex.: [task/..., decision/...]
+relates: []
 summary: ""
 ---
 

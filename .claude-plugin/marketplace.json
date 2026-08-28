@@ -1,0 +1,18 @@
+{
+  "name": "graphos-sdd-marketplace",
+  "description": "Marketplace for the Graphos SDD plugin (spec-driven development + graph memory engine)",
+  "owner": {
+    "name": "RealMendes"
+  },
+  "plugins": [
+    {
+      "name": "graphos-sdd",
+      "description": "Spec-driven development team with a Graphos graph-memory engine",
+      "version": "1.0.0",
+      "source": "./",
+      "author": {
+        "name": "RealMendes"
+      }
+    }
+  ]
+}
